@@ -440,6 +440,122 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHakkimizdaHakkimizda extends Struct.SingleTypeSchema {
+  collectionName: 'hakkimizdas';
+  info: {
+    displayName: 'Hakkimizda';
+    pluralName: 'hakkimizdas';
+    singularName: 'hakkimizda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Baslik: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hakkimizda.hakkimizda'
+    > &
+      Schema.Attribute.Private;
+    Misyonumuz: Schema.Attribute.Text;
+    Ofis: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Vizyonumuz: Schema.Attribute.Text;
+  };
+}
+
+export interface ApiKategoriKategori extends Struct.CollectionTypeSchema {
+  collectionName: 'kategoris';
+  info: {
+    displayName: 'Kategori';
+    pluralName: 'kategoris';
+    singularName: 'kategori';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Ad: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kategori.kategori'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiYazarYazar extends Struct.CollectionTypeSchema {
+  collectionName: 'yazars';
+  info: {
+    displayName: 'Yazar';
+    pluralName: 'yazars';
+    singularName: 'yazar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Ad: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Iletisim: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::yazar.yazar'> &
+      Schema.Attribute.Private;
+    Profil: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    Soyad: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiYaziYazi extends Struct.CollectionTypeSchema {
+  collectionName: 'yazis';
+  info: {
+    displayName: 'Yazi';
+    pluralName: 'yazis';
+    singularName: 'yazi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Baslik: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Icerik: Schema.Attribute.Blocks;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::yazi.yazi'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -951,6 +1067,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::hakkimizda.hakkimizda': ApiHakkimizdaHakkimizda;
+      'api::kategori.kategori': ApiKategoriKategori;
+      'api::yazar.yazar': ApiYazarYazar;
+      'api::yazi.yazi': ApiYaziYazi;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
